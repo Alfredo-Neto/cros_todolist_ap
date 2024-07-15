@@ -25,7 +25,7 @@ model User {
   updatedAt DateTime @updatedAt
   name      String
   email     String   @unique
-  password  String
+  passwordDigest String   @db.VarChar(255)
   tasks     Task[]
   subtasks  Subtask[]
 }

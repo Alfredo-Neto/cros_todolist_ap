@@ -1,9 +1,11 @@
 import { PrismaClient } from '@prisma/client';
 import { UserData } from '../interfaces/UserData'
+import { User } from "@prisma/client";
+import bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
-const create = async (userData: UserData) => {
+const create = async (userData: User) => {
 	try {
     const newUser = await prisma.user.create({
       data: {
@@ -17,8 +19,10 @@ const create = async (userData: UserData) => {
   }
 }
 
-const findByEmail = async (userEmail: string) => {
+export const findByEmail = async (userEmail: string | undefined) => {
 	try {
+    console.log({userEmail});
+    
     const user = await prisma.user.findUnique({ where: { email: userEmail } });
     if (user) {
       return user;
@@ -33,10 +37,21 @@ const findByEmail = async (userEmail: string) => {
 const findById = async (id: number) => {
   return prisma.user.findUnique({
     where: {
-      id: id,
+      id,
     },
   });
 };
+
+
+export const hashPassword = async (password: string): Promise<string> => {
+  const salt = await bcrypt.genSalt(10);
+  return bcrypt.hash(password, salt);
+};
+
+export const comparePasswords = async (enteredPassword: string, hashedPassword: string): Promise<boolean> => {
+  return bcrypt.compare(enteredPassword, hashedPassword);
+};
+
 
 export default {
   create,

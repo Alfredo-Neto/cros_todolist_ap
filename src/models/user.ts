@@ -30,7 +30,16 @@ const findByEmail = async (userEmail: string) => {
   }
 }
 
+const findById = async (id: number) => {
+  return prisma.user.findUnique({
+    where: {
+      id: id,
+    },
+  });
+};
+
 export default {
   create,
-  findByEmail
+  findByEmail,
+  findById
 }

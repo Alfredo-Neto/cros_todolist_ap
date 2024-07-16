@@ -38,7 +38,7 @@ DATABASE_URL=postgres://user:password@localhost:5432/your_database
 
 ## Run the migrations
 ```
-yarn prisma migrate dev
+$ yarn prisma migrate dev
 ```
 
 ## Running the project

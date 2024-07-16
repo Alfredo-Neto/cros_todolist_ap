@@ -8,6 +8,17 @@ export const TaskSchema = z.object({
   status: StatusEnum.default('TODO'),
 });
 
+export const SubtaskSchema = z.object({
+  title: z.string().min(1, 'Title is required'),
+  description: z.string().optional(),
+  status: z.enum(['TODO', 'IN_PROGRESS', 'DONE']).optional(),
+  taskId: z.number().optional(),
+  parentSubtaskId: z.number().optional(),
+}).refine((data) => data.taskId !== undefined || data.parentSubtaskId !== undefined, {
+  message: 'Either taskId or parentSubtaskId must be provided',
+  path: ['taskId', 'parentSubtaskId'],
+});
+
 export const TaskUpdateSchema = z.object({
   title: z.string().max(255, "Title must be 255 characters or less"),
   description: z.string().optional(),

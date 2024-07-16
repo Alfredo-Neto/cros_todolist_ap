@@ -9,7 +9,7 @@
 For development, you will only need Node.js and a node global package, Yarn, installed in your environement.
 
 
-    $ node --version
+    node --version
     v20.15.1
 
 
@@ -17,15 +17,15 @@ For development, you will only need Node.js and a node global package, Yarn, ins
 ### Yarn installation
   After installing node, this project will need yarn too, so just run the following command.
 
-      $ npm install -g yarn
+      npm install -g yarn
 
 ---
 
 ## Install
 
-    $ git clone https://github.com/Alfredo-Neto/cros_todolist_ap.git
-    $ cd cros_todolist_ap
-    $ yarn install
+    git clone https://github.com/Alfredo-Neto/cros_todolist_ap.git
+    cd cros_todolist_ap
+    yarn install
 
 ## Configure app
 
@@ -38,13 +38,13 @@ DATABASE_URL=postgres://user:password@localhost:5432/your_database
 
 ## Run the migrations
 ```
-$ yarn prisma migrate dev
+yarn prisma migrate dev
 ```
 
 ## Running the project
 
-    $ yarn dev
+    yarn dev
 
 ## Simple build for production
 
-    $ yarn start
+    yarn start

@@ -36,10 +36,13 @@ JWT_SECRET=your_secret_key
 DATABASE_URL=postgres://user:password@localhost:5432/your_database
 ```
 
+## Run the migrations
+yarn prisma migrate dev
+
 ## Running the project
 
     $ yarn dev
 
 ## Simple build for production
 
-    $ yarn build
+    $ yarn start

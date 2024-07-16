@@ -14,7 +14,7 @@ export async function create(req: Request, res: Response) {
     if (validUser) {
       userResponse = await userService.create(userData);
       if (userResponse.statusCode == 400) {
-        return res.status(400).json({ message: "Bad request." });
+        return res.status(userResponse.statusCode).json({ message: userResponse.message });
       }
 
       if (userResponse.statusCode == 201) {

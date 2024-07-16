@@ -1,14 +1,16 @@
 import { Router } from 'express';
-import { create, list, update, remove, updateStatus, filterByStatus } from '../controllers/TaskController';
-import { authenticate } from '../auth/auth';
+import { create, list, update, remove, updateStatus, filterByStatus, createSubtask, listSubtasks } from '../controllers/TaskController';
+import { verifyToken } from '../auth/auth';
 
 const router = Router();
 
-router.post('/', authenticate, create);
-router.get('/', authenticate, list);
-router.put('/:id', authenticate, update);
-router.delete('/:id', authenticate, remove);
-router.patch('/:id/status', authenticate, updateStatus);
-router.get('/status', authenticate, filterByStatus);
+router.post('/', verifyToken, create);
+router.get('/', verifyToken, list);
+router.put('/:id', verifyToken, update);
+router.delete('/:id', verifyToken, remove);
+router.patch('/:id/status', verifyToken, updateStatus);
+router.get('/status', verifyToken, filterByStatus);
+router.post('/subtasks', verifyToken, createSubtask);
+router.get('/subtasks', verifyToken, listSubtasks);
 
 export default router;

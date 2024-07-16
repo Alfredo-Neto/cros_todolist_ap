@@ -16,9 +16,6 @@ export async function login(req: Request, res: Response) {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    console.log({digest: user.passwordDigest});
-    
-
     const isMatch = await comparePasswords(password, user.passwordDigest);
 
     if (!isMatch) {
